@@ -5,6 +5,8 @@
  */
 package com.fixit.util;
 
+import com.fixit.entities.Prestations;
+import com.fixit.services.PrestationsService;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +19,7 @@ import java.sql.Statement;
 public class testconnection {
     
     
-	public static void main(String [] args)
+	public static void main(String [] args) throws SQLException
 	{
             try {
                 ConnectionDb db = ConnectionDb.getInstance();

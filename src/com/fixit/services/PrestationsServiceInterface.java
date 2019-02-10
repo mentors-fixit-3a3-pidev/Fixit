@@ -8,6 +8,7 @@ package com.fixit.services;
 import com.fixit.entities.Prestations;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 
 
@@ -21,5 +22,5 @@ public interface PrestationsServiceInterface {
     public void addPrestation(Prestations p) throws SQLException;
     public void updatePrestation (Prestations p) throws SQLException ;
     public void deletePrestation (int id_prestation) throws SQLException ;
-    public List<Prestations> getPrestations () throws SQLException ;
+    public ObservableList<Prestations> listerPrestations(int id_prestations) throws SQLException ;
 }

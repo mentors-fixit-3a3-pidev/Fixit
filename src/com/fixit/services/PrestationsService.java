@@ -39,6 +39,7 @@ public class PrestationsService implements PrestationsServiceInterface {
                 st.setString(7,p.getNom_prestation());
                 st.setString(8,p.getDescription_prestation());
                 st.setInt(9, p.getPrix());
+                st.execute();
             
     }
  
@@ -74,7 +75,8 @@ public class PrestationsService implements PrestationsServiceInterface {
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
                 String query = "DELETE FROM `prestations` WHERE `id_prestation` = "+id_prestation;
-		PreparedStatement st  = cn.prepareStatement(query);     
+		PreparedStatement st  = cn.prepareStatement(query); 
+                st.execute();
 
 
     }
@@ -96,7 +98,9 @@ public class PrestationsService implements PrestationsServiceInterface {
                 st.setString(6,p.getNom_prestation());
                 st.setString(7,p.getDescription_prestation());
                 st.setInt(8, p.getPrix());
-        
+                st.execute();
 
     }
+
+
 }
