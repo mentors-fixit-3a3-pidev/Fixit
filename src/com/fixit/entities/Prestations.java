@@ -11,5 +11,5 @@ package com.fixit.entities;
  */
 public class Prestations {
     private int id_prestation ;
-            
+    private int id_client;
 }
