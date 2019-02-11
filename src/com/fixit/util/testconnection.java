@@ -36,7 +36,6 @@ public class testconnection {
                 ex.printStackTrace();
             }
             
-            
         
         
         

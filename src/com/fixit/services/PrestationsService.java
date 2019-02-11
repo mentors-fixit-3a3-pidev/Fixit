@@ -44,7 +44,7 @@ public class PrestationsService implements PrestationsServiceInterface {
     }
  
      @Override
-    public ObservableList<Prestations> listerPrestations(int id_prestations) throws SQLException {
+    public ObservableList<Prestations> listerPrestations(int id_prestation) throws SQLException {
 
 
                 ConnectionDb db = ConnectionDb.getInstance();
@@ -55,7 +55,7 @@ public class PrestationsService implements PrestationsServiceInterface {
                 List<Prestations> lp = new ArrayList<Prestations>();
                 Prestations p = null;
                 while(rs.next()){
-                    p.setId_prestataire(rs.getInt("id_prestation"));
+                    p.setId_prestation(rs.getInt("id_prestation"));
                     p.setId_client(rs.getInt("id_client"));
                     p.setId_prestataire(rs.getInt("id_prestataire"));
                     p.setId_sous_catégorie(rs.getInt("id_sous_catégorie"));
