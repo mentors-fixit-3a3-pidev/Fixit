@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="783.0" style="-fx-background-color: #FADE53;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fixit.controllers.PrestationsGuiController">
+<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="783.0" style="-fx-background-color: #3E4455;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fixit.controllers.PrestationsGuiController">
    <children>
       <VBox prefHeight="457.0" prefWidth="180.0" style="-fx-background-color: #3E4455;">
          <children>
@@ -46,18 +46,20 @@
             </Button>
          </children>
       </VBox>
-      <TableView layoutX="180.0" layoutY="60.0" prefHeight="396.0" prefWidth="234.0" stylesheets="@../ressources/tableview.css">
+      <TableView layoutX="180.0" layoutY="94.0" prefHeight="362.0" prefWidth="438.0" stylesheets="@../ressources/tableview.css">
         <columns>
-          <TableColumn prefWidth="102.0" text="Nom client" />
-            <TableColumn prefWidth="111.0" text="date prestation" />
+          <TableColumn prefWidth="116.0" text="Nom client" />
+            <TableColumn prefWidth="127.0" text="date prestation" />
+            <TableColumn prefWidth="99.0" text="état" />
+            <TableColumn prefWidth="110.0" text="prix" />
         </columns>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TableView>
-      <Label layoutX="235.0" layoutY="20.0" prefHeight="34.0" prefWidth="125.0" text="Liste prestations" textFill="#2d3a5e">
+      <Label layoutX="186.0" layoutY="11.0" prefHeight="34.0" prefWidth="202.0" text="Mes prestations" textFill="#fade53">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>
