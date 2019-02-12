@@ -44,7 +44,7 @@ public class PrestationsService implements PrestationsServiceInterface {
     }
  
      @Override
-    public ObservableList<Prestations> listerPrestations(int id_prestation) throws SQLException {
+    public ObservableList<Prestations> listerPrestations() throws SQLException {
 
 
                 ConnectionDb db = ConnectionDb.getInstance();
@@ -53,7 +53,7 @@ public class PrestationsService implements PrestationsServiceInterface {
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<Prestations> lp = new ArrayList<Prestations>();
-                Prestations p = null;
+                Prestations p = new Prestations();
                 while(rs.next()){
                     p.setId_prestation(rs.getInt("id_prestation"));
                     p.setId_client(rs.getInt("id_client"));

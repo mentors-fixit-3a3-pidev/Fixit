@@ -22,5 +22,5 @@ public interface PrestationsServiceInterface {
     public void addPrestation(Prestations p) throws SQLException;
     public void updatePrestation (Prestations p) throws SQLException ;
     public void deletePrestation (int id_prestation) throws SQLException ;
-    public ObservableList<Prestations> listerPrestations(int id_prestation) throws SQLException ;
+    public ObservableList<Prestations> listerPrestations() throws SQLException ;
 }

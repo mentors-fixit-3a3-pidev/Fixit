@@ -35,7 +35,7 @@ public class PropositionsPrixService implements PropositionsPrixServiceInterface
             
     }
     @Override
-    public ObservableList<PropositionsPrix> listerPropositionsPrix(int id_prestation) throws SQLException {
+    public ObservableList<PropositionsPrix> listerPropositionsPrix() throws SQLException {
 
 
                 ConnectionDb db = ConnectionDb.getInstance();
@@ -44,7 +44,7 @@ public class PropositionsPrixService implements PropositionsPrixServiceInterface
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<PropositionsPrix> lpp = new ArrayList<PropositionsPrix>();
-                PropositionsPrix pp = null;
+                PropositionsPrix pp = new PropositionsPrix();
                 while(rs.next()){
                     pp.setId_prestation(rs.getInt("id_prestation"));
                     pp.setPrix(rs.getInt("prix"));

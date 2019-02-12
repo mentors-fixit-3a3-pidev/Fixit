@@ -47,6 +47,11 @@ public class Prestations {
         this.description_prestation = description_prestation;
         this.prix = prix;
     }
+
+    public Prestations() {
+    }
+
+   
     
 
     public int getId_prestation() {

@@ -20,6 +20,10 @@ public class PropositionsPrix {
         this.état = état;
     }
 
+    public PropositionsPrix() {
+    }
+    
+
     public PropositionsPrix(int prix, int état) {
         this.prix = prix;
         this.état = état;
