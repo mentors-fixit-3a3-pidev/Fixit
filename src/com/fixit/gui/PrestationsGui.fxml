@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -10,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="783.0" style="-fx-background-color: #FADE53;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="com.fixit.controllers.PrestationsGuiController">
+<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="783.0" style="-fx-background-color: #FADE53;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fixit.controllers.PrestationsGuiController">
    <children>
       <VBox prefHeight="457.0" prefWidth="180.0" style="-fx-background-color: #3E4455;">
          <children>
@@ -20,27 +20,45 @@
                   <Image url="@../ressources/logo%20fixit.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="203.0" style="-fx-background-color: #3E4455;" text="Home Page" textFill="#fade53">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: #3E4455;" text="User name" textFill="#fade53">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                     <image>
+                        <Image url="@../ressources/user%20(2).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="203.0" style="-fx-background-color: #3E4455;" text=" Home Page" textAlignment="CENTER" textFill="#fade53">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" translateY="-3.0">
                      <image>
-                        <Image url="@../ressources/yellow-house-md.png" />
+                        <Image url="@../ressources/home-icon-silhouette.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </VBox>
-      <TableView layoutX="180.0" layoutY="60.0" prefHeight="343.0" prefWidth="604.0" stylesheets="@../ressources/tableview.css">
+      <TableView layoutX="180.0" layoutY="60.0" prefHeight="396.0" prefWidth="234.0" stylesheets="@../ressources/tableview.css">
         <columns>
-          <TableColumn prefWidth="138.0" text="Id_prestation" />
+          <TableColumn prefWidth="102.0" text="Nom client" />
+            <TableColumn prefWidth="111.0" text="date prestation" />
         </columns>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TableView>
+      <Label layoutX="235.0" layoutY="20.0" prefHeight="34.0" prefWidth="125.0" text="Liste prestations" textFill="#2d3a5e">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
