@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="gridPane" prefHeight="344.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="25.0" layoutY="23.0" prefHeight="17.0" prefWidth="102.0" text="Prestation details" />
+      <Label layoutX="14.0" layoutY="67.0" text="Nom client :" />
+      <Label fx:id="nomclient" layoutX="134.0" layoutY="67.0" prefHeight="17.0" prefWidth="145.0" text="Nom client" />
+      <Label layoutX="14.0" layoutY="101.0" text="Nom sous catégorie :" />
+      <Label fx:id="catégorie" layoutX="133.0" layoutY="101.0" prefHeight="17.0" prefWidth="153.0" text="Nom sous catégorie" />
+      <Label layoutX="14.0" layoutY="136.0" prefHeight="17.0" prefWidth="102.0" text="Date prestation :" />
+      <Label fx:id="date" layoutX="133.0" layoutY="136.0" prefHeight="17.0" prefWidth="123.0" text="Date prestation" />
+      <Label fx:id="etat" layoutX="133.0" layoutY="172.0" prefHeight="17.0" prefWidth="113.0" text="Etat prestation " />
+      <Label layoutX="15.0" layoutY="172.0" prefHeight="17.0" prefWidth="123.0" text="Etat prestation :" />
+      <Label layoutX="14.0" layoutY="204.0" prefHeight="17.0" prefWidth="102.0" text="Prix :" />
+      <Label fx:id="prix" layoutX="133.0" layoutY="204.0" prefHeight="17.0" prefWidth="113.0" text="Prix" />
+      <Label layoutX="11.0" layoutY="236.0" text="Description :" />
+      <Label fx:id="description" layoutX="133.0" layoutY="236.0" text="Description" />
+      <Button fx:id="modifier" layoutX="25.0" layoutY="289.0" mnemonicParsing="false" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="108.0" layoutY="289.0" mnemonicParsing="false" text="Supprimer" />
+      <Button fx:id="extraire" layoutX="195.0" layoutY="289.0" mnemonicParsing="false" text="Extraire" />
+   </children>
+</AnchorPane>

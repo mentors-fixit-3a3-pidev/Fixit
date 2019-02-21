@@ -5,6 +5,7 @@
  */
 package com.fixit.entities;
 
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -12,9 +13,20 @@ import java.util.Objects;
  * @author mehdi
  */
 public class user {
-    public String username,email,password,roles,first_name,last_name,birth_date,address,phone;
+    public String username,email,password,roles,first_name,last_name,address;
+    private int id,phone;
+    private Date birth_date;
+    
 
-    public user(String username, String email, String password, String roles, String first_name, String last_name, String birth_date, String address, String phone) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public user(String username, String email, String password, String roles, String first_name, String last_name, Date birth_date, String address, int phone) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -24,6 +36,10 @@ public class user {
         this.birth_date = birth_date;
         this.address = address;
         this.phone = phone;
+    }
+
+    public user() {
+        
     }
 
     public String getUsername() {
@@ -116,7 +132,7 @@ public class user {
         this.last_name = last_name;
     }
 
-    public void setBirth_date(String birth_date) {
+    public void setBirth_date(Date birth_date) {
         this.birth_date = birth_date;
     }
 
@@ -124,7 +140,7 @@ public class user {
         this.address = address;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
@@ -148,7 +164,7 @@ public class user {
         return last_name;
     }
 
-    public String getBirth_date() {
+    public Date getBirth_date() {
         return birth_date;
     }
 
@@ -156,7 +172,7 @@ public class user {
         return address;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
     

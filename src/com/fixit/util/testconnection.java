@@ -27,14 +27,17 @@ public class testconnection {
             try {
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "Select * From prestations";
+                /*String query = "Select * From prestations";
 			Statement st = cn.createStatement();
 			ResultSet rst = st.executeQuery(query);
 			
 			if(!rst.next())
 			{
 				System.out.println("it's ok");	
-			}
+			}*/
+                PrestationsService ps = new PrestationsService();
+                ObservableList<Prestations> l= ps.listerPrestations(1);
+                l.forEach(p->System.out.println(p.getId_prestation()));
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

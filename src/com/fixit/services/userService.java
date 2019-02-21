@@ -72,5 +72,24 @@ public class userService {
             System.out.println(e);
         }
     }
+    public user get_user_by_id(int id) throws SQLException{
+         Statement stm = cnx.createStatement();
+        String req = "select * from fos_users where id="+id;
+        ResultSet rs = stm.executeQuery(req);
+        user u =new user();
+        while(rs.next()){
+            u.setId(rs.getInt(id));
+            u.setFirst_name(rs.getString("first_name"));
+            u.setLast_name(rs.getString("last_name"));
+            u.setEmail(rs.getString("mail"));
+            u.setUsername(rs.getString("username"));
+            u.setPassword(rs.getString("password"));
+            u.setBirth_date(rs.getDate("birth_date"));
+            u.setPhone(rs.getInt("phone"));
+            u.setRoles(rs.getString("roles"));
+            u.setAddress(rs.getString("address"));      
+        }
+        return u;
+    }
 
 }

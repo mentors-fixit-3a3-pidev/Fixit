@@ -30,8 +30,8 @@ public class PrestationsService implements PrestationsServiceInterface {
          String query="INSERT INTO `prestations` (`id_prestation` , `id_client`, `id_prestataire` , `id_sous_catégorie` , `date_prestation` , `état_prestation` , `nom_prestation` , `description_prestation` , `prix`) VALUES (?,?,?,?,?,?,?,?,?)";
          PreparedStatement st  = cn.prepareStatement(query);
                 st.setInt(1, p.getId_prestation());
-                st.setInt(2,p.getId_client());
-                st.setInt(3,p.getId_prestataire());
+                st.setInt(2,p.getClient().getId());
+                st.setInt(3,p.getPrestataire().getId());
                 st.setInt(4,p.getId_sous_catégorie());
                 java.sql.Date date = new java.sql.Date(p.getDate_prestation().getTime());
                 st.setDate(5,date);
@@ -44,20 +44,22 @@ public class PrestationsService implements PrestationsServiceInterface {
     }
  
      @Override
-    public ObservableList<Prestations> listerPrestations() throws SQLException {
+    public ObservableList<Prestations> listerPrestations(int id) throws SQLException {
 
 
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "SELECT * FROM `prestations`";
+                String query = "SELECT * FROM `prestations`,`fos_users` WHERE ((prestations.id_prestataire=fos_users.id) AND (prestations.id_prestataire="+id+"))";
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<Prestations> lp = new ArrayList<Prestations>();
-                Prestations p = new Prestations();
+                
+                userService us = new userService();
                 while(rs.next()){
+                    Prestations p = new Prestations();
                     p.setId_prestation(rs.getInt("id_prestation"));
-                    p.setId_client(rs.getInt("id_client"));
-                    p.setId_prestataire(rs.getInt("id_prestataire"));
+                    p.setClient(us.get_user_by_id(rs.getInt("id_client")));
+                    p.setPrestataire(us.get_user_by_id(rs.getInt("id_prestataire")));
                     p.setId_sous_catégorie(rs.getInt("id_sous_catégorie"));
                     p.setDate_prestation(rs.getDate("date_prestation"));
                     p.setÉtat_prestation(rs.getInt("état_prestation"));
@@ -88,8 +90,8 @@ public class PrestationsService implements PrestationsServiceInterface {
                 String query = "UPDATE `prestations` SET `id_client`=?,`id_prestataire`=?,`id_sous_catégorie`=?,`date_prestation`=?,`état_prestation`=?,`nom_prestation`=?,`description_prestation`=?,`prix`=? WHERE `id_prestation` = "+p.getId_prestation();
 		PreparedStatement st  = cn.prepareStatement(query);
                 
-                st.setInt(1, p.getId_client());
-                st.setInt(2, p.getId_prestataire());
+                st.setInt(1, p.getClient().getId());
+                st.setInt(2, p.getPrestataire().getId());
                 st.setInt(3, p.getId_sous_catégorie());
                 java.util.Date d1 = new java.util.Date();
                 java.sql.Date d2 = new java.sql.Date(d1.getTime());
