@@ -59,7 +59,7 @@
             <Image url="@../ressources/search.png" />
          </image>
       </ImageView>
-      <ListView fx:id="lists" layoutX="180.0" layoutY="93.0" prefHeight="344.0" prefWidth="275.0" />
-      <ListView fx:id="det" layoutX="484.0" layoutY="93.0" prefHeight="344.0" prefWidth="293.0" />
+      <ListView fx:id="lists" layoutX="180.0" layoutY="93.0" prefHeight="344.0" prefWidth="281.0" style="-fx-background-color: #3a4455;" />
+      <ListView fx:id="det" layoutX="474.0" layoutY="93.0" prefHeight="344.0" prefWidth="303.0" style="-fx-background-color: #3a4455;" />
    </children>
 </AnchorPane>

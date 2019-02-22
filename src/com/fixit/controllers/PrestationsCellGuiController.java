@@ -6,6 +6,7 @@
 package com.fixit.controllers;
 
 import com.fixit.entities.Prestations;
+import com.fixit.services.Sendingmail;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -78,7 +80,6 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
             dateprestation.setText(student.getDate_prestation().toString());
             prix.setText(String.valueOf(student.getPrix()));
 
-
             
 
             details.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,10 +105,13 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
 
                 }
 
-            });
+            }
+                    
+            );
+            
             
         };
-
+    
         setText(null);
         setGraphic(gridPane);
     }

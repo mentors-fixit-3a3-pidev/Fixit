@@ -6,6 +6,12 @@
 package com.fixit.controllers;
 
 import com.fixit.entities.Prestations;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.ZapfDingbatsList;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,6 +52,8 @@ public class DetailsCellGuiController extends ListCell<Prestations> {
     @FXML
     private Button extraire;
     private FXMLLoader mLLoader;
+    private static String FILE = "C:/Users/dell/Desktop/Fixit/testpdf.pdf";
+    
 
     /**
      * Initializes the controller class.
@@ -93,7 +101,9 @@ public class DetailsCellGuiController extends ListCell<Prestations> {
            
             
         };
-
+        
+        
+ 
         setText(null);
         setGraphic(gridPane);
     }
