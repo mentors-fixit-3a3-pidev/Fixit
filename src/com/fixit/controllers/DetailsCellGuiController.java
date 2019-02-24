@@ -90,7 +90,7 @@ public class DetailsCellGuiController extends ListCell<Prestations> {
     @FXML
     private Button extraire;
     private FXMLLoader mLLoader;
-    private static String FILE = "C:/Users/dell/Desktop/Fixit/testpdf.pdf";
+    
     
 
     /**

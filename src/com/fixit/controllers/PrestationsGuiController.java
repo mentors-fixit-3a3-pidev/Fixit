@@ -22,9 +22,13 @@ import static javafx.collections.FXCollections.observableArrayList;
 import static javafx.collections.FXCollections.observableArrayList;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -39,6 +43,8 @@ public class PrestationsGuiController implements Initializable {
     @FXML
     private ListView<Prestations> det;
     public static List<Prestations> data_details = new ArrayList<Prestations>();
+    @FXML
+    private TextField search;
     
     
     
@@ -64,6 +70,35 @@ public class PrestationsGuiController implements Initializable {
         //initFilter();
 
     }
+
+    @FXML
+    private void rechercher(ActionEvent event) {
+    }
+    public void initFilter() {
+        FilteredList<Prestations> filteredData = new FilteredList<>(data, p -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(search -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if ((search.getClient().getFirst_name().toLowerCase().contains(lowerCaseFilter)) || (search.getClient().getLast_name().toLowerCase().contains(lowerCaseFilter))) {
+                    return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
+        SortedList<Prestations> sortedData = new SortedList<>(filteredData);
+        lists.setItems(sortedData);
+        long s = filteredData.stream().count();
+        search.setText(String.valueOf(s));
+
+    }
+
     }    
     
     

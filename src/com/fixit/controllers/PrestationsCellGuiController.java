@@ -7,10 +7,11 @@ package com.fixit.controllers;
 
 import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
-import com.fixit.services.Sendingmail;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -27,6 +28,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.scene.input.MouseEvent;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * FXML Controller class
@@ -45,8 +51,6 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
     private Label nomclient;
     @FXML
     private Label prix;
-    @FXML
-    private Label titles;
     @FXML
     private Button contacter;
     @FXML
@@ -108,7 +112,22 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
             }
                     
             );
-                        
+            
+                     contacter.setOnAction(new EventHandler<ActionEvent>() { 
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        ContacterClient(student.getClient().getEmail());
+                        System.out.println(student.getClient().getEmail());
+                    } catch (SQLException ex) {
+                        //Logger.getLogger(PrestationsCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("execption mail ");
+                    }
+                }
+                                
+                                
+                           });
+    
                     
 
                 
@@ -125,4 +144,32 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
     
 
     }
+     public void ContacterClient(String mail) throws SQLException {
+        
+                String host="smtp.gmail.com";
+		String from="boneback481@gmail.com" ;
+		String pwd="backbone00" ;
+		String to=mail ;
+		Transport t = null;
+		Properties props = System.getProperties();
+		props.put("mail.smtp.host", host);
+		Session session = Session.getDefaultInstance(props, null);
+		MimeMessage msg = new MimeMessage(session);
+		try {
+			msg.setFrom(new InternetAddress(from));
+			msg.addRecipients(javax.mail.Message.RecipientType.TO,to);
+			msg.setSubject("Demande de recrutement");
+                      
+			msg.setText("CONGRATS,Votre demande a été validée\nPour plus d'informations contacter le service compétent\n Cordialement ");
+			t = session.getTransport("smtps");
+			t.connect(host,from,pwd);
+			t.sendMessage(msg, msg.getAllRecipients());
+                  
+		}
+		catch (Exception ex ) {ex.printStackTrace();}
+		
+		}
 }
+  
+
+

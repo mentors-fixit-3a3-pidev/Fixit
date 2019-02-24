@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="783.0" style="-fx-background-color: #3E4455;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fixit.controllers.PrestationsGuiController">
    <children>
-      <TextField layoutX="180.0" layoutY="55.0" prefHeight="25.0" prefWidth="275.0" />
+      <TextField fx:id="search" layoutX="180.0" layoutY="55.0" onAction="#rechercher" prefHeight="25.0" prefWidth="275.0" />
       <VBox prefHeight="468.0" prefWidth="180.0" style="-fx-background-color: #3E4455;">
          <children>
             <ImageView fitHeight="175.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true" translateX="35.0">
