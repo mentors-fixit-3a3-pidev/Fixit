@@ -44,7 +44,43 @@ public class userService {
         ResultSet rs = stm.executeQuery(req);
         return rs;
     }
+    public boolean chercherUser(String username, String password) throws SQLException {
 
+        boolean exist=false;
+        Statement stm = cnx.createStatement();
+        String req = "select * from fos_users ";
+        ResultSet rs = stm.executeQuery(req);
+        while(rs.next()){
+            if((rs.getString("username").equals(username))&&rs.getString("password").equals(password)){
+                exist=true;
+        //user u =new user(rs.getString("username"),rs.getString("email"),rs.getString("password"),rs.getString("roles"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("address"),rs.getInt("id"),rs.getInt("phone"),rs.getDate("birth_date"));
+        }}
+            
+       return exist;
+    }
+public user donnerUser(String username, String password) throws SQLException {
+
+       user u =new user();
+        Statement stm = cnx.createStatement();
+        String req = "select * from fos_users where username='" + username + "'and password='" + password + "'";
+        ResultSet rs = stm.executeQuery(req);
+        if(rs.next()){
+            
+         u.setId(rs.getInt("id"));
+            u.setFirst_name(rs.getString("first_name"));
+            u.setLast_name(rs.getString("last_name"));
+            u.setEmail(rs.getString("mail"));
+            u.setUsername(rs.getString("username"));
+            u.setPassword(rs.getString("password"));
+            u.setBirth_date(rs.getDate("birth_date"));
+            u.setPhone(rs.getInt("phone"));
+            u.setRoles(rs.getString("roles"));
+            u.setAddress(rs.getString("address"));   
+        
+        }
+            
+      return u;
+    }
     public void supprimerDeLaBase(int id) throws SQLException {
 
         try {
@@ -78,7 +114,7 @@ public class userService {
         ResultSet rs = stm.executeQuery(req);
         user u =new user();
         while(rs.next()){
-            u.setId(rs.getInt(id));
+            u.setId(rs.getInt("id"));
             u.setFirst_name(rs.getString("first_name"));
             u.setLast_name(rs.getString("last_name"));
             u.setEmail(rs.getString("mail"));

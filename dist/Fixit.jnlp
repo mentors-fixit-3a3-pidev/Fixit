@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Fixit.jar" size="983721" download="eager" />
+    <jar href="Fixit.jar" size="991932" download="eager" />
     <jar href="lib/TrayNotification.jar" size="41019" download="eager" />
     <jar href="lib/controlsfx-8.40.12.jar" size="996389" download="eager" />
     <jar href="lib/itextpdf-5.4.1.jar" size="1898417" download="eager" />

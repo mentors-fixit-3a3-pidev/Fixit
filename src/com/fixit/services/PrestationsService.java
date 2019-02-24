@@ -6,6 +6,7 @@
 package com.fixit.services;
 
 import com.fixit.entities.Prestations;
+import com.fixit.entities.PropositionsPrix;
 import com.fixit.util.ConnectionDb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,7 +50,7 @@ public class PrestationsService implements PrestationsServiceInterface {
 
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "SELECT * FROM `prestations`,`fos_users` WHERE ((prestations.id_prestataire=fos_users.id) AND (prestations.id_prestataire="+id+"))";
+                String query = "SELECT * FROM `prestations` WHERE ( (prestations.id_prestataire="+id+"))";
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<Prestations> lp = new ArrayList<Prestations>();
@@ -76,9 +77,25 @@ public class PrestationsService implements PrestationsServiceInterface {
 
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
+                String query1="Select * From propositions_prix ";
+                Statement st1  = cn.createStatement();
+                ResultSet rs = st1.executeQuery(query1);
+                List<PropositionsPrix> lpp = new ArrayList<PropositionsPrix>();
+                PropositionsPrix pp = new PropositionsPrix();
+                while(rs.next()){
+                    if(rs.getInt("id_prestation")==id_prestation){
+                        
+                        String query3 = "DELETE FROM `propositions_prix` WHERE `id_prestation` = "+id_prestation;
+		PreparedStatement st2  = cn.prepareStatement(query3); 
+                st2.execute();
+                    }}
                 String query = "DELETE FROM `prestations` WHERE `id_prestation` = "+id_prestation;
 		PreparedStatement st  = cn.prepareStatement(query); 
                 st.execute();
+                
+                
+                
+
 
 
     }
@@ -93,9 +110,7 @@ public class PrestationsService implements PrestationsServiceInterface {
                 st.setInt(1, p.getClient().getId());
                 st.setInt(2, p.getPrestataire().getId());
                 st.setInt(3, p.getId_sous_catégorie());
-                java.util.Date d1 = new java.util.Date();
-                java.sql.Date d2 = new java.sql.Date(d1.getTime());
-                st.setDate(4,d2);
+                st.setDate(4,p.getDate_prestation());
                 st.setInt(5,p.getÉtat_prestation());
                 st.setString(6,p.getNom_prestation());
                 st.setString(7,p.getDescription_prestation());

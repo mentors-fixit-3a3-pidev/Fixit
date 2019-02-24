@@ -5,6 +5,7 @@
  */
 package com.fixit.controllers;
 
+import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
 import com.fixit.services.Sendingmail;
 import java.io.IOException;
@@ -54,7 +55,6 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
     /**
      * Initializes the controller class.
      */
-    @Override
     protected void updateItem(Prestations student, boolean empty) {
         super.updateItem(student, empty);
 
@@ -108,9 +108,15 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
             }
                     
             );
+                        
+                    
+
+                
+                
+
             
             
-        };
+        
     
         setText(null);
         setGraphic(gridPane);
@@ -118,5 +124,5 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
 
     
 
-    
+    }
 }

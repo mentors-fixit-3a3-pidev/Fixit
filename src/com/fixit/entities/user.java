@@ -175,5 +175,18 @@ public class user {
     public int getPhone() {
         return phone;
     }
+
+    public user(String username, String email, String password, String roles, String first_name, String last_name, String address, int id, int phone, Date birth_date) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.address = address;
+        this.id = id;
+        this.phone = phone;
+        this.birth_date = birth_date;
+    }
     
 }

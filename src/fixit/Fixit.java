@@ -19,7 +19,7 @@ public class Fixit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/fixit/gui/Login.fxml"));
         
         Scene scene = new Scene(root);
         

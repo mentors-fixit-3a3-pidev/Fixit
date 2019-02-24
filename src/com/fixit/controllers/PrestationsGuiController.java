@@ -5,7 +5,9 @@
  */
 package com.fixit.controllers;
 
+import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
+import com.fixit.entities.user;
 import com.fixit.services.PrestationsService;
 import java.net.URL;
 import java.sql.SQLException;
@@ -30,13 +32,16 @@ import javafx.scene.control.ListView;
  * @author dell
  */
 public class PrestationsGuiController implements Initializable {
-
+    
     @FXML
     private ListView<Prestations> lists;
     ObservableList<Prestations> data;
     @FXML
     private ListView<Prestations> det;
     public static List<Prestations> data_details = new ArrayList<Prestations>();
+    
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -44,16 +49,17 @@ public class PrestationsGuiController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         PrestationsService ps = new PrestationsService();
         try {
-            data = ps.listerPrestations(1);
+            data = ps.listerPrestations(LoginController.session.getId());
         } catch (SQLException ex) {
             Logger.getLogger(PrestationsGuiController.class.getName()).log(Level.SEVERE, null, ex);
         }
         lists.setItems(data);
         ObservableList<Prestations> li = FXCollections.observableArrayList(data_details);
         det.setItems(li);
-
-        lists.setCellFactory(PrestationsListView -> new PrestationsCellGuiController());
+     lists.setCellFactory(PrestationsListView -> new PrestationsCellGuiController());
         det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
+        
+         
 
         //initFilter();
 
