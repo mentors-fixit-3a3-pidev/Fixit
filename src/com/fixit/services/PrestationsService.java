@@ -118,6 +118,24 @@ public class PrestationsService implements PrestationsServiceInterface {
                 st.execute();
 
     }
+     public boolean updateEtat(int id) throws SQLException {
+
+         boolean b=false;
+                ConnectionDb db = ConnectionDb.getInstance();
+                Connection cn = db.getCnx();
+                String query1 = "SELECT `état_prestation` FROM `prestations` WHERE `id_prestation` = "+id;
+		Statement st1  = cn.createStatement();
+                ResultSet rs = st1.executeQuery(query1);
+                while(rs.next()){
+                if(rs.getInt("état_prestation")==0)
+                {String query = "UPDATE `prestations` SET `état_prestation`=1 WHERE `id_prestation` = "+id;
+		PreparedStatement st  = cn.prepareStatement(query);
+                b=true;
+              
+                st.execute();}}
+              return b;
+
+    }
 
 
 }

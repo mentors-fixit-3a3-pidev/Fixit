@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -63,13 +65,18 @@ public class LoginController implements Initializable {
         user u=new user();
         if(us.chercherUser(usernametextfield.getText(), passwordtextfield.getText()))
         {
-           u =us.donnerUser(usernametextfield.getText(), passwordtextfield.getText());
-            session=u;
-              Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/fixit/gui/PrestationsGui.fxml"));
-         Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
-         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-         window.setScene(tableViewOpportunityScene);
+            
+                u =us.donnerUser(usernametextfield.getText(), passwordtextfield.getText());
+                session=u;
+                
+                Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/fixit/gui/PrestationsGui.fxml"));
+                Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
+                Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(tableViewOpportunityScene);
+               
+        
         }
+        
         else{
              TrayNotification tray =new TrayNotification();
             tray.setTitle("Erreur");
@@ -77,7 +84,7 @@ public class LoginController implements Initializable {
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();}
-        
+       
        
     }
 

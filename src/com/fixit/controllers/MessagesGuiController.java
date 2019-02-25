@@ -5,9 +5,9 @@
  */
 package com.fixit.controllers;
 
+import static com.fixit.controllers.PrestationsGuiController.data_details;
 import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
-import com.fixit.entities.user;
 import com.fixit.services.PrestationsService;
 import java.io.IOException;
 import java.net.URL;
@@ -18,13 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,7 +29,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -43,25 +36,20 @@ import javafx.stage.Stage;
  *
  * @author dell
  */
-public class PrestationsGuiController implements Initializable {
-    
-    @FXML
-    private ListView<Prestations> lists;
+public class MessagesGuiController implements Initializable {
     ObservableList<Prestations> data;
     @FXML
-    private ListView<Prestations> det;
-    public static List<Prestations> data_details = new ArrayList<Prestations>();
+    private Button mesprestation;
     @FXML
-    private TextField search;
-    @FXML
-    private Button mesprestations;
-    @FXML
-    private Button mesmessages;
+    private Button mesmessage;
     @FXML
     private Button monavancement;
-    
-    
-    
+    @FXML
+    private ListView<Prestations> lists;
+    @FXML
+    private ListView<Message> messages;
+    public static List<Message> data_msg = new ArrayList<Message>();
+
     /**
      * Initializes the controller class.
      */
@@ -74,11 +62,10 @@ public class PrestationsGuiController implements Initializable {
             Logger.getLogger(PrestationsGuiController.class.getName()).log(Level.SEVERE, null, ex);
         }
         lists.setItems(data);
-        ObservableList<Prestations> li = FXCollections.observableArrayList(data_details);
-        det.setItems(li);
-     lists.setCellFactory(PrestationsListView -> new PrestationsCellGuiController());
-        det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
-        mesmessages.setOnAction(new EventHandler<ActionEvent>() {
+        ObservableList<Message> li = FXCollections.observableArrayList(data_msg);
+        messages.setItems(li);
+     lists.setCellFactory(PrestationsListView -> new PrestationsMessagesCellGuiController());
+            mesmessage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -91,7 +78,7 @@ public class PrestationsGuiController implements Initializable {
                 }
             }
         });
-            mesprestations.setOnAction(new EventHandler<ActionEvent>() {
+            mesprestation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -117,42 +104,6 @@ public class PrestationsGuiController implements Initializable {
                 }
             }
         });
-        
-         
-
-        //initFilter();
-
-    }
-
-    @FXML
-    private void rechercher(ActionEvent event) {
-    }
-    public void initFilter() {
-        FilteredList<Prestations> filteredData = new FilteredList<>(data, p -> true);
-        search.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(search -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Compare first name and last name of every person with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if ((search.getClient().getFirst_name().toLowerCase().contains(lowerCaseFilter)) || (search.getClient().getLast_name().toLowerCase().contains(lowerCaseFilter))) {
-                    return true; // Filter matches first name.
-                }
-                return false; // Does not match.
-            });
-        });
-        SortedList<Prestations> sortedData = new SortedList<>(filteredData);
-        lists.setItems(sortedData);
-        long s = filteredData.stream().count();
-        search.setText(String.valueOf(s));
-
-    }
-
     }    
     
-    
-
+}

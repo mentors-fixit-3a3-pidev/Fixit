@@ -9,7 +9,7 @@
     <children>
       <Label fx:id="dateprestation" layoutX="165.0" layoutY="48.0" prefHeight="25.0" prefWidth="234.0" text="date prestation" textFill="#fade53" />
       <Label fx:id="nomclient" layoutX="163.0" layoutY="1.0" prefHeight="51.0" prefWidth="234.0" text="Nom client" textFill="#fade53" />
-      <Button fx:id="contacter" layoutX="134.0" layoutY="116.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #fade53;" text="Contacter" textFill="#3a4455">
+      <Button fx:id="contacter" layoutX="134.0" layoutY="116.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #fade53;" text="Changer état" textFill="#3a4455">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

@@ -7,6 +7,8 @@ package com.fixit.controllers;
 
 import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
+import com.fixit.services.PrestationsService;
+import com.teknikindustries.bulksms.SMS;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,6 +35,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -117,13 +122,23 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
-                        ContacterClient(student.getClient().getEmail());
-                        System.out.println(student.getClient().getEmail());
+                        PrestationsService ps= new PrestationsService();
+                        if(ps.updateEtat(student.getId_prestation())){
+                            SMS smstut =new SMS();
+                            smstut.SendSMS("balkissakremi ", "balkiss123", "Le prestataire a modifié l'état de votre prestation", "21622931083", "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
+                        }
+                        else{
+                          TrayNotification tray =new TrayNotification();
+            tray.setTitle("Erreur");
+        tray.setMessage("La prestation a été déjà traitée");
+        tray.setAnimationType(AnimationType.POPUP);
+        tray.setNotificationType(NotificationType.INFORMATION);
+        tray.showAndWait();}
                     } catch (SQLException ex) {
-                        //Logger.getLogger(PrestationsCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
-                        System.out.println("execption mail ");
+                        Logger.getLogger(PrestationsCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+}
+                     
                                 
                                 
                            });
@@ -144,31 +159,7 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
     
 
     }
-     public void ContacterClient(String mail) throws SQLException {
-        
-                String host="smtp.gmail.com";
-		String from="boneback481@gmail.com" ;
-		String pwd="backbone00" ;
-		String to=mail ;
-		Transport t = null;
-		Properties props = System.getProperties();
-		props.put("mail.smtp.host", host);
-		Session session = Session.getDefaultInstance(props, null);
-		MimeMessage msg = new MimeMessage(session);
-		try {
-			msg.setFrom(new InternetAddress(from));
-			msg.addRecipients(javax.mail.Message.RecipientType.TO,to);
-			msg.setSubject("Demande de recrutement");
-                      
-			msg.setText("CONGRATS,Votre demande a été validée\nPour plus d'informations contacter le service compétent\n Cordialement ");
-			t = session.getTransport("smtps");
-			t.connect(host,from,pwd);
-			t.sendMessage(msg, msg.getAllRecipients());
-                  
-		}
-		catch (Exception ex ) {ex.printStackTrace();}
-		
-		}
+     
 }
   
 
