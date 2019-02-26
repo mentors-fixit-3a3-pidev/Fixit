@@ -10,6 +10,7 @@ import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
 import com.fixit.services.MessageService;
 import com.fixit.services.PrestationsService;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -37,6 +39,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utils.BadWords;
 
 /**
  * FXML Controller class
@@ -66,6 +69,7 @@ public class PrestationsMessagesCellGuiController extends ListCell<Prestations> 
     private Label choixla;
     @FXML
     private TableColumn<Prestations, String> exp;
+    File f;
 
     /**
      * Initializes the controller class.
@@ -97,27 +101,43 @@ public class PrestationsMessagesCellGuiController extends ListCell<Prestations> 
                 ObservableList obs=FXCollections.observableArrayList(produits);
                 table.setItems(obs);
                 mes.setCellValueFactory(new PropertyValueFactory<>("contenu"));
-                exp.setCellValueFactory(new PropertyValueFactory<>(LoginController.session.getFirst_name()));
+                exp.setCellValueFactory(new PropertyValueFactory<>("nom"));
             } catch (SQLException ex) {
                 Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
             }
             envoyer.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    try {
+                    
                         Message m= new Message(LoginController.session.getFirst_name(),LoginController.session.getLast_name(),msg.getText(),student.getId_prestation(),student.getPrestataire().getId(),student.getClient().getId());
                         MessageService ms=new MessageService();
-                        ms.ajouterMessage(LoginController.session.getFirst_name(),LoginController.session.getLast_name(),msg.getText(),student.getId_prestation(),student.getPrestataire().getId(),student.getClient().getId());
-                        ArrayList<Message> produits= (ArrayList<Message>) ms.afficher(student.getId_prestation(),LoginController.session.getId());
-                ObservableList obs=FXCollections.observableArrayList(produits);
-                table.setItems(obs);
-                mes.setCellValueFactory(new PropertyValueFactory<>("contenu"));
-                exp.setCellValueFactory(new PropertyValueFactory<>(LoginController.session.getFirst_name()));
+                           BadWords.loadConfigs();
+           
+                            try {
+                                if (BadWords.filterText(msg.getText())) {
+                                    
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Application erreur");
+                                    alert.setHeaderText("Gros mot détecté");
+                                    alert.setContentText("L'application ne vous permet pas d'utiliser ce genre de termes");
+                                    alert.showAndWait();
+                                } else {
+                                    try {
+                                        ms.ajouterMessage(LoginController.session.getFirst_name(),LoginController.session.getLast_name(),msg.getText(),student.getId_prestation(),student.getPrestataire().getId(),student.getClient().getId());
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                ArrayList<Message> produits= (ArrayList<Message>) ms.afficher(student.getId_prestation(),LoginController.session.getId());
+                                ObservableList obs=FXCollections.observableArrayList(produits);
+                                table.setItems(obs);
+                                mes.setCellValueFactory(new PropertyValueFactory<>("contenu"));
+                                exp.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                            } catch (SQLException ex) {
+                                Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 
-                    } catch (SQLException ex) {
-                        Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
             });
     }    
         setText(null);

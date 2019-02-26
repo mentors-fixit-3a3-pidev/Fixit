@@ -149,5 +149,28 @@ public int Salaire(int id) throws SQLException
             
         
        
-}}
+}public int NombrePrestations(int id) throws SQLException
+{
+    
+     int nbr=0;
+      
+           
+            Statement stm = cnx.createStatement();
+            String req = "SELECT COUNT(*) from prestations WHERE `id_prestataire`="+id;
+            ResultSet rs = stm.executeQuery(req);
+            System.out.println(req);
+            while(rs.next()){
+                System.out.println(rs);
+                nbr=rs.getInt(1);
+                return nbr;
+}
+        return 0;
+            
+            
+            
+            
+        
+       
+}
+}
 

@@ -5,21 +5,20 @@
  */
 package com.fixit.controllers;
 
-import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
 import com.fixit.services.PrestationsService;
 import com.teknikindustries.bulksms.SMS;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,13 +27,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.scene.input.MouseEvent;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -44,26 +36,26 @@ import tray.notification.TrayNotification;
  *
  * @author dell
  */
-public class PrestationsCellGuiController extends ListCell<Prestations> {
+public class PrestationTraiteCellGuiController extends ListCell<Prestations> {
 
     @FXML
     private AnchorPane gridPane;
-   
-    private FXMLLoader mLLoader;
     @FXML
     private Label dateprestation;
     @FXML
     private Label nomclient;
     @FXML
-    private Label prix;
-    @FXML
     private Button contacter;
     @FXML
     private Button details;
+    @FXML
+    private Label prix;
+    private FXMLLoader mLLoader;
 
     /**
      * Initializes the controller class.
      */
+    @Override
     protected void updateItem(Prestations student, boolean empty) {
         super.updateItem(student, empty);
 
@@ -84,10 +76,10 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
                 }
 
             }
-            
+            if(student.getÉtat_prestation()==1){
             nomclient.setText(student.getClient().getFirst_name()+" "+ student.getClient().getLast_name());
             dateprestation.setText(student.getDate_prestation().toString());
-            prix.setText(String.valueOf(student.getPrix()));
+            prix.setText(String.valueOf(student.getPrix()));}
 
         
 
@@ -159,8 +151,5 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
     
 
     }
-     
+    
 }
-  
-
-

@@ -28,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -49,6 +50,14 @@ public class MessagesGuiController implements Initializable {
     @FXML
     private ListView<Message> messages;
     public static List<Message> data_msg = new ArrayList<Message>();
+    @FXML
+    private Button mesprestation1;
+    @FXML
+    private Button mesmessage1;
+    @FXML
+    private Button monavancement1;
+    @FXML
+    private ComboBox<?> nomprestataire;
 
     /**
      * Initializes the controller class.

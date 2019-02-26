@@ -35,6 +35,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -51,7 +52,6 @@ public class PrestationsGuiController implements Initializable {
     @FXML
     private ListView<Prestations> det;
     public static List<Prestations> data_details = new ArrayList<Prestations>();
-    @FXML
     private TextField search;
     @FXML
     private Button mesprestations;
@@ -59,6 +59,12 @@ public class PrestationsGuiController implements Initializable {
     private Button mesmessages;
     @FXML
     private Button monavancement;
+    @FXML
+    private RadioButton tout;
+    @FXML
+    private RadioButton traite;
+    @FXML
+    private RadioButton ntraite;
     
     
     
@@ -78,6 +84,27 @@ public class PrestationsGuiController implements Initializable {
         det.setItems(li);
      lists.setCellFactory(PrestationsListView -> new PrestationsCellGuiController());
         det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
+        tout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 lists.setCellFactory(PrestationsListView -> new PrestationsCellGuiController());
+        det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
+            }
+        });
+        traite.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 lists.setCellFactory(PrestationsListView -> new PrestationTraiteCellGuiController());
+        det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
+            }
+        });
+        ntraite.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 lists.setCellFactory(PrestationsListView -> new PrestationNonTraiteCellGuiController());
+        det.setCellFactory(PrestationsListView -> new DetailsCellGuiController());
+            }
+        });
         mesmessages.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -124,9 +151,6 @@ public class PrestationsGuiController implements Initializable {
 
     }
 
-    @FXML
-    private void rechercher(ActionEvent event) {
-    }
     public void initFilter() {
         FilteredList<Prestations> filteredData = new FilteredList<>(data, p -> true);
         search.textProperty().addListener((observable, oldValue, newValue) -> {

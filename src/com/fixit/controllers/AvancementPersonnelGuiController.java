@@ -57,7 +57,20 @@ public class AvancementPersonnelGuiController implements Initializable {
     @FXML
     private Label salaire;
   userService u = new userService();
-    int f;
+    int f,f1;
+    float pri;
+    @FXML
+    private Label nbrprest;
+    @FXML
+    private Label pack1;
+    @FXML
+    private Label pack2;
+    @FXML
+    private Label pack3;
+    @FXML
+    private Label pack;
+    @FXML
+    private Label prime;
     
     /**
      * Initializes the controller class.
@@ -72,7 +85,30 @@ public class AvancementPersonnelGuiController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AvancementPersonnelGuiController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        try {
+            f1 = u.NombrePrestations(LoginController.session.getId());
+            nbrprest.setText(""+f1);
+        } catch (SQLException ex) {
+            Logger.getLogger(AvancementPersonnelGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(f<500){
+            pack.setText("Low pack");
+            pri=(f*5)/100;
+            prime.setText(String.valueOf(pri));
+            pack1.setStyle("-fx-font-size:12;-fx-text-fill:#FF0080;");
+        }
+        if((f>500)&&(f<1000)){
+            pack.setText("Meduim pack");
+            pri=(f*10)/100;
+            prime.setText(String.valueOf(pri));
+            pack2.setStyle("-fx-font-size:12;-fx-text-fill:#FF0080;");
+        }
+        if(f>1000){
+            pack.setText("High pack");
+            pri=(f*15)/100;
+            prime.setText(String.valueOf(pri));
+            pack3.setStyle("-fx-font-size:12;-fx-text-fill:#FF0080;");
+        }
         mesmessage.setOnAction(new EventHandler<ActionEvent>() {
            
             @Override
