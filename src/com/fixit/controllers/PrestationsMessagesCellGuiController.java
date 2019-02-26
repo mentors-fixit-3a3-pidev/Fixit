@@ -9,6 +9,7 @@ package com.fixit.controllers;
 import com.fixit.entities.Message;
 import com.fixit.entities.Prestations;
 import com.fixit.services.MessageService;
+import com.fixit.services.PrestationsService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -63,6 +64,8 @@ public class PrestationsMessagesCellGuiController extends ListCell<Prestations> 
     private TextField msg;
     @FXML
     private Label choixla;
+    @FXML
+    private TableColumn<Prestations, String> exp;
 
     /**
      * Initializes the controller class.
@@ -88,13 +91,13 @@ public class PrestationsMessagesCellGuiController extends ListCell<Prestations> 
                     }
                     
                 }
-                choixla.setText(Integer.toString(student.getId_prestation()));
+                choixla.setText(student.getNom_prestation());
                 MessageService ms= new MessageService();
-                
                 ArrayList<Message> produits= (ArrayList<Message>) ms.afficher(student.getId_prestation(),LoginController.session.getId());
                 ObservableList obs=FXCollections.observableArrayList(produits);
                 table.setItems(obs);
                 mes.setCellValueFactory(new PropertyValueFactory<>("contenu"));
+                exp.setCellValueFactory(new PropertyValueFactory<>(LoginController.session.getFirst_name()));
             } catch (SQLException ex) {
                 Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -109,6 +112,8 @@ public class PrestationsMessagesCellGuiController extends ListCell<Prestations> 
                 ObservableList obs=FXCollections.observableArrayList(produits);
                 table.setItems(obs);
                 mes.setCellValueFactory(new PropertyValueFactory<>("contenu"));
+                exp.setCellValueFactory(new PropertyValueFactory<>(LoginController.session.getFirst_name()));
+
                     } catch (SQLException ex) {
                         Logger.getLogger(PrestationsMessagesCellGuiController.class.getName()).log(Level.SEVERE, null, ex);
                     }

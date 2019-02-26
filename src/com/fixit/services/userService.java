@@ -127,5 +127,27 @@ public user donnerUser(String username, String password) throws SQLException {
         }
         return u;
     }
-
+public int Salaire(int id) throws SQLException
+{
+    
+     int salaire=0;
+      
+           
+            Statement stm = cnx.createStatement();
+            String req = "SELECT sum(prix) from prestations WHERE id_prestataire="+id;
+            ResultSet rs = stm.executeQuery(req);
+            System.out.println(req);
+            while(rs.next()){
+                System.out.println(rs);
+                salaire=rs.getInt(1);
+                return salaire;
 }
+        return 0;
+            
+            
+            
+            
+        
+       
+}}
+

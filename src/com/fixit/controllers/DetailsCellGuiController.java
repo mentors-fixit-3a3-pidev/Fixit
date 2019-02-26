@@ -94,7 +94,7 @@ public class DetailsCellGuiController extends ListCell<Prestations> {
     
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class.baaaaaaaaaaaaaaalbel
      */
     
 @Override
@@ -231,7 +231,6 @@ public class DetailsCellGuiController extends ListCell<Prestations> {
                                      PrestationsService ps = new PrestationsService();
                             student.setDate_prestation(java.sql.Date.valueOf(date.getValue()));
                             student.setPrix(Integer.parseInt(prix.getText()));
-                            student.setÉtat_prestation(Integer.parseInt(etat.getText()));
                                     ps.updatePrestation(student);
                                 } catch (SQLException ex) {
                                     Logger.getLogger(DetailsCellGuiController.class.getName()).log(Level.SEVERE, null, ex);

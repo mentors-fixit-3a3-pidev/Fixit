@@ -31,9 +31,9 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TextField fx:id="nomclient" editable="false" layoutX="127.0" layoutY="63.0" promptText="Nom Client" style="-fx-background-color: #3a4455;" styleClass="textField.setStyle(&quot;-fx-text-inner-color: red;&quot;);" />
+      <TextField fx:id="nomclient" editable="false" layoutX="127.0" layoutY="63.0" promptText="Nom Client" style="-fx-background-color: #3a4455;" />
       <TextField fx:id="catégorie" editable="false" layoutX="131.0" layoutY="97.0" prefHeight="25.0" prefWidth="140.0" promptText="Nom sous catégorie" style="-fx-background-color: #3a4455;" />
-      <TextField fx:id="etat" layoutX="121.0" layoutY="168.0" promptText="Etat prestation" style="-fx-background-color: #3a4455;" />
+      <TextField fx:id="etat" editable="false" layoutX="121.0" layoutY="168.0" promptText="Etat prestation" style="-fx-background-color: #3a4455;" />
       <TextField fx:id="prix" layoutX="121.0" layoutY="200.0" promptText="Prix" style="-fx-background-color: #3a4455;" />
       <TextField fx:id="description" editable="false" layoutX="121.0" layoutY="232.0" promptText="Description" style="-fx-background-color: #3a4455;" />
       <DatePicker fx:id="date" layoutX="108.0" layoutY="132.0" promptText=" Date Prestation" />

@@ -51,5 +51,11 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <Label layoutX="210.0" layoutY="106.0" prefHeight="34.0" prefWidth="164.0" text="Mon salaire  :" textFill="#fade53">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="salaire" layoutX="396.0" layoutY="106.0" prefHeight="34.0" prefWidth="164.0" text="Label" textFill="#fade53" />
    </children>
 </AnchorPane>

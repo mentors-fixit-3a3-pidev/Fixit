@@ -125,7 +125,7 @@ public class PrestationsCellGuiController extends ListCell<Prestations> {
                         PrestationsService ps= new PrestationsService();
                         if(ps.updateEtat(student.getId_prestation())){
                             SMS smstut =new SMS();
-                            smstut.SendSMS("balkissakremi ", "balkiss123", "Le prestataire a modifié l'état de votre prestation", "21622931083", "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
+                            smstut.SendSMS("balkissbalkiss ", "balkiss123", "Le prestataire a modifié l'état de votre prestation", "21654483350", "https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
                         }
                         else{
                           TrayNotification tray =new TrayNotification();
